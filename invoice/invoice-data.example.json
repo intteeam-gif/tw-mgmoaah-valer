@@ -1,22 +1,35 @@
 {
-  "invoiceNumber": "INV-...",
-  "orderNumber": "ORD-...",
+  "invoiceNumber": "INV-2026-000001",
+  "orderNumber": "ORD-2026-000001",
+  "issueDate": "2026-10-08T00:00:00+03:00",
   "customerName": "اسم العميل",
-  "shippingAddress": "العنوان",
-  "customerPhone": "+966...",
+  "shippingAddress": "عنوان الشحن",
+  "customerPhone": "+966500000000",
   "customerEmail": "customer@example.com",
   "customerVatNumber": "",
   "discount": 0,
-  "shippingFee": 25,
+  "shippingFee": 0,
   "vatRate": 0.15,
   "invoiceType": "simplified",
+  "currency": "SAR",
   "seller": {
     "nameAr": "ڤالير للأقمشة",
-    "vatNumber": "300123456700003",
-    "commercialRegistration": "1010123456",
-    "phone": "+966 920 000 000",
+    "nameEn": "VALER Luxury Fabrics",
+    "vatNumber": "ضع الرقم الضريبي الرسمي هنا",
+    "commercialRegistration": "ضع رقم السجل التجاري الرسمي هنا",
+    "phone": "+966500000000",
     "email": "Valer.ufco@gmail.com",
     "address": "الرياض، المملكة العربية السعودية"
   },
-  "products": []
+  "products": [
+    {
+      "id": "V101",
+      "name": "اسم المنتج",
+      "price": 100,
+      "qty": 1,
+      "color": "اللون",
+      "from": "#475569",
+      "to": "#1e293b"
+    }
+  ]
 }
