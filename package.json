@@ -1,21 +1,21 @@
 {
-    "name": "tw-mgmoaah-valer",
-    "version": "1.0.0",
-    "description": "",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview"
-    },
-    "devDependencies": {
-        "@salla.sa/twilight-bundles": "^0.1.0",
-        "vite": "^5.0.0"
-    },
-    "author": "Valer.ufco@gmail.com",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/intteeam-gif/tw-mgmoaah-valer"
-    },
-    "private": true
+  "name": "tw-mgmoaah-valer",
+  "version": "1.0.1",
+  "description": "VALER Twilight components and Salla electronic invoice template",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@salla.sa/twilight-bundles": "^0.1.0",
+    "vite": "^5.0.0"
+  },
+  "author": "Valer.ufco@gmail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/intteeam-gif/tw-mgmoaah-valer"
+  },
+  "private": true
 }
