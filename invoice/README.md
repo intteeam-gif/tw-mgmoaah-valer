@@ -1,21 +1,66 @@
 # VALER × Salla — Electronic Invoice Template
 
-قالب فاتورة إلكترونية/ضريبية بتصميم VALER، جاهز للدمج داخل مشروع متجر Salla.
+قالب فاتورة إلكترونية/ضريبية بتصميم VALER، مخصص للعرض والطباعة والحفظ بصيغة PDF داخل متجر Salla أو أي طبقة تكامل تستقبل بيانات الطلب.
 
-### الملفات
-- `invoice/valer-invoice.html` — قالب A4 قابل للطباعة والحفظ PDF.
-- `invoice/invoice-data.example.json` — مثال لهيكل بيانات الطلب.
+## الملفات
 
-### نقطة الربط
-يتم تمرير بيانات الطلب إلى القالب عبر:
+- `invoice/valer-invoice.html` — قالب A4 متجاوب وقابل للطباعة.
+- `invoice/invoice-data.example.json` — مثال واضح لهيكل بيانات الفاتورة.
+
+## تمرير بيانات الطلب
+
+قبل تحميل القالب يمكن تمرير بيانات الطلب من Salla أو طبقة التكامل بهذا الشكل:
+
 ```js
 window.VALER_INVOICE_DATA = {
-  invoiceNumber, orderNumber, customerName,
-  discount, shippingFee, vatRate, products, seller
+  invoiceNumber: "INV-2026-000001",
+  orderNumber: "ORD-2026-000001",
+  issueDate: "2026-10-08T00:00:00+03:00",
+  customerName: "اسم العميل",
+  shippingAddress: "عنوان الشحن",
+  customerPhone: "+966500000000",
+  customerEmail: "customer@example.com",
+  customerVatNumber: "",
+  discount: 0,
+  shippingFee: 0,
+  vatRate: 0.15,
+  invoiceType: "simplified",
+  seller: {
+    nameAr: "ڤالير للأقمشة",
+    nameEn: "VALER Luxury Fabrics",
+    vatNumber: "ضع الرقم الرسمي هنا",
+    commercialRegistration: "ضع الرقم الرسمي هنا",
+    phone: "+966500000000",
+    email: "Valer.ufco@gmail.com",
+    address: "الرياض، المملكة العربية السعودية"
+  },
+  products: []
 };
 ```
 
-### تنبيه مهم
-القالب مسؤول عن **العرض والطباعة**. لا يعتبر بحد ذاته نظام فوترة ZATCA Phase 2 ولا يقوم بالتوقيع أو الإرسال/التخليص لدى ZATCA. يجب أن تأتي بيانات الفاتورة الرسمية والـQR الرسمي من نظام الفوترة/التكامل المعتمد.
+## مهم بخصوص ZATCA
 
-تم فصل بيانات الطلب عن التصميم حتى يمكن ربطه بطبقة Salla/API دون إعادة بناء الواجهة.
+هذا المشروع **قالب عرض وطباعة** وليس نظام فوترة إلكترونية كاملًا. لا يدّعي القالب بمفرده التسجيل أو التوقيع أو الإرسال أو التخليص لدى هيئة الزكاة والضريبة والجمارك (ZATCA).
+
+يمكن للقالب إنشاء QR بصيغة TLV لعرض بيانات الفاتورة، لكن **الـQR الرسمي ومتطلبات المرحلة الثانية والتوقيع والتشفير والربط مع ZATCA يجب أن تأتي من نظام الفوترة أو التكامل المعتمد المستخدم فعليًا في المتجر**.
+
+لا تضع رقم VAT أو السجل التجاري التجريبي الموجود في ملفات المثال على فواتير حقيقية؛ استبدلهما بالبيانات الرسمية للمنشأة.
+
+## التشغيل
+
+للتطوير:
+
+```bash
+pnpm install
+pnpm run dev
+```
+
+ولبناء ملفات الإنتاج:
+
+```bash
+pnpm run build
+```
+
+## Repository
+
+`https://github.com/intteeam-gif/tw-mgmoaah-valer`
