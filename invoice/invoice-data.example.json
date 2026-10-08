@@ -1,0 +1,22 @@
+{
+  "invoiceNumber": "INV-...",
+  "orderNumber": "ORD-...",
+  "customerName": "اسم العميل",
+  "shippingAddress": "العنوان",
+  "customerPhone": "+966...",
+  "customerEmail": "customer@example.com",
+  "customerVatNumber": "",
+  "discount": 0,
+  "shippingFee": 25,
+  "vatRate": 0.15,
+  "invoiceType": "simplified",
+  "seller": {
+    "nameAr": "ڤالير للأقمشة",
+    "vatNumber": "300123456700003",
+    "commercialRegistration": "1010123456",
+    "phone": "+966 920 000 000",
+    "email": "Valer.ufco@gmail.com",
+    "address": "الرياض، المملكة العربية السعودية"
+  },
+  "products": []
+}
