@@ -225,7 +225,7 @@
             <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
             <div>
               <div class="text-xs text-slate-500">الرقم الضريبي (VAT)</div>
-              <div class="seller-vat font-mono font-bold text-slate-900 text-sm" dir="ltr">300123456700003</div>
+              <div class="seller-vat font-mono font-bold text-slate-900 text-sm" dir="ltr">—</div>
             </div>
           </div>
           <div class="flex items-center gap-2 p-2 bg-slate-50 rounded-lg">
@@ -249,15 +249,15 @@
           <div class="space-y-2 text-sm">
             <div>
               <div class="text-xs text-slate-500">رقم الفاتورة</div>
-              <div class="font-mono font-bold text-slate-900" dir="ltr" id="invoice-number">INV-2026-001247</div>
+              <div class="font-mono font-bold text-slate-900" dir="ltr" id="invoice-number">—</div>
             </div>
             <div>
               <div class="text-xs text-slate-500">رقم الطلب (سلة)</div>
-              <div class="font-mono font-bold text-slate-900" dir="ltr">ORD-2026-005892</div>
+              <div class="font-mono font-bold text-slate-900" dir="ltr" id="order-number">—</div>
             </div>
             <div>
               <div class="text-xs text-slate-500">تاريخ الإصدار</div>
-              <div class="font-bold text-slate-900">08 أكتوبر 2026</div>
+              <div class="font-bold text-slate-900" id="issue-date">—</div>
               <div class="text-xs text-slate-500" dir="ltr">08/10/2026 - 14:32</div>
             </div>
             <div>
@@ -565,7 +565,9 @@ const shippingFee = Math.max(0, Number(invoiceData.shippingFee || 0));
 
 function bindInvoiceData() {
   const d=invoiceData, set=(id,v)=>{const e=document.getElementById(id); if(e)e.textContent=v??"";};
-  set("invoice-number",d.invoiceNumber); set("customer-name",d.customerName);
+  set("invoice-number",d.invoiceNumber); set("order-number",d.orderNumber); set("customer-name",d.customerName);
+  const issueDate = d.issueDate ? new Date(d.issueDate) : null;
+  set("issue-date", issueDate && !Number.isNaN(issueDate.getTime()) ? issueDate.toLocaleDateString('ar-SA',{year:'numeric',month:'long',day:'numeric'}) : "—");
   const cells={".seller-address":d.seller.address,".seller-phone":d.seller.phone,".seller-email":d.seller.email,".seller-vat":d.seller.vatNumber,".seller-cr":d.seller.commercialRegistration,".customer-address":d.shippingAddress,".customer-phone":d.customerPhone,".customer-email":d.customerEmail,".customer-vat":d.customerVatNumber};
   Object.entries(cells).forEach(([s,v])=>document.querySelectorAll(s).forEach(e=>e.textContent=v||"—"));
 }
