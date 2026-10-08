@@ -232,7 +232,7 @@
             <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
             <div>
               <div class="text-xs text-slate-500">السجل التجاري</div>
-              <div class="seller-cr font-mono font-bold text-slate-900 text-sm" dir="ltr">1010123456</div>
+              <div class="seller-cr font-mono font-bold text-slate-900 text-sm" dir="ltr">—</div>
             </div>
           </div>
         </div>
@@ -351,7 +351,7 @@
           </tr>
           <tr class="bg-slate-100">
             <td colspan="6" class="px-3 py-3 text-right font-bold text-slate-900">رسوم الشحن</td>
-            <td class="px-3 py-3 text-left font-bold text-slate-900 font-mono" id="shipping">25.00 ر.س</td>
+            <td class="px-3 py-3 text-left font-bold text-slate-900 font-mono" id="shipping">— ر.س</td>
           </tr>
           <tr class="bg-slate-50">
             <td colspan="6" class="px-3 py-3 text-right font-bold text-slate-900">ضريبة القيمة المضافة (<span id="vat-rate-label">15%</span>)</td>
@@ -393,11 +393,11 @@
           <div class="flex-1">
             <div class="text-xs text-slate-500 mb-2">امسح للتحقق من الفاتورة</div>
             <div class="space-y-1 text-xs text-slate-700">
-              <div><span class="text-slate-500">البائع:</span> <span class="font-bold">ڤالير للأقمشة</span></div>
+              <div><span class="text-slate-500">البائع:</span> <span class="font-bold" id="qr-seller-name">—</span></div>
               <div><span class="text-slate-500">الرقم الضريبي:</span> <span class="font-mono" dir="ltr" id="qr-vat-number">—</span></div>
               <div><span class="text-slate-500">التاريخ:</span> <span id="qr-date">—</span></div>
-              <div><span class="text-slate-500">الإجمالي:</span> <span class="font-bold" id="qr-total">398.88 ر.س</span></div>
-              <div><span class="text-slate-500">الضريبة:</span> <span class="font-bold" id="qr-vat">52.02 ر.س</span></div>
+              <div><span class="text-slate-500">الإجمالي:</span> <span class="font-bold" id="qr-total">— ر.س</span></div>
+              <div><span class="text-slate-500">الضريبة:</span> <span class="font-bold" id="qr-vat">— ر.س</span></div>
             </div>
           </div>
         </div>
@@ -678,9 +678,9 @@ function generateQRCode(total, vat) {
     return result;
   }
 
-  const sellerName = "ڤالير للأقمشة";
-  const vatNumber = "300123456700003";
-  const invoiceDate = "2026-10-08T14:32:00Z";
+  const sellerName = String(invoiceData.seller?.nameAr || "");
+  const vatNumber = String(invoiceData.seller?.vatNumber || "");
+  const invoiceDate = invoiceData.issueDate || new Date().toISOString();
   const invoiceTotal = total.toFixed(2);
   const vatAmount = vat.toFixed(2);
 
@@ -713,7 +713,7 @@ function sendWhatsApp() {
   const phone = String(invoiceData.customerPhone || "").replace(/[^0-9]/g, "");
   const message = encodeURIComponent(
     `🧾 فاتورة VALER\n` +
-    `رقم الفاتورة: INV-2026-001247\n` +
+    `رقم الفاتورة: ${invoiceData.invoiceNumber}\n` +
     `الإجمالي: ${document.getElementById('grand-total').textContent}\n` +
     `شكراً لثقتكم بـ ڤالير ✨`
   );
