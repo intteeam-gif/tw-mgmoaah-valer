@@ -726,7 +726,7 @@ function emailInvoice() {
   const email = String(invoiceData.customerEmail || "");
   const subject = encodeURIComponent(`فاتورة VALER #${invoiceData.invoiceNumber}`);
   const body = encodeURIComponent(
-    `مرحباً،\n\nمرفق فاتورتكم من متجر فالير للأقمشة الفاخرة.\n\nرقم الفاتورة: INV-2026-001247\nالإجمالي: ${document.getElementById('grand-total').textContent}\n\nشكراً لثقتكم\nفريق فالير`
+    `مرحباً،\n\nمرفق فاتورتكم من متجر فالير للأقمشة الفاخرة.\n\nرقم الفاتورة: ${invoiceData.invoiceNumber}\nالإجمالي: ${document.getElementById('grand-total').textContent}\n\nشكراً لثقتكم\nفريق فالير`
   );
   window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
 }
